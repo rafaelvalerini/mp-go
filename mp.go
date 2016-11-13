@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"os"
 )
 
 const (
@@ -17,7 +16,7 @@ const (
 	MERCADOPAGO_PAYMENTS_METHOD    = "POST"
 )
 
-func PayWithMercadoPago(mp MPRequestPayments, envAccessToken string) (MPResponsePayments, error) {
+func PayWithMercadoPago(mp MPRequestPayments, accessToken string) (MPResponsePayments, error) {
 
 	var response MPResponsePayments
 
@@ -27,7 +26,7 @@ func PayWithMercadoPago(mp MPRequestPayments, envAccessToken string) (MPResponse
 
 	json.NewEncoder(b).Encode(mp)
 
-	req, err := http.NewRequest(MERCADOPAGO_PAYMENTS_METHOD, MERCADOPAGO_PAYMENT + MERCADOPAGO_ACCESS_TOKEN_PARAM + os.Getenv(envAccessToken), b)
+	req, err := http.NewRequest(MERCADOPAGO_PAYMENTS_METHOD, MERCADOPAGO_PAYMENT + MERCADOPAGO_ACCESS_TOKEN_PARAM + accessToken, b)
 
 	if err != nil {
 
