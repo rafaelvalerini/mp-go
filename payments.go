@@ -10,20 +10,7 @@ type MPRequestPayments struct {
 }
 
 type Payer struct {
-	Email          string      `json:"email"`
-	FirstName      string      `json:"first_name"`
-	ID             interface{} `json:"id"`
-	Identification struct {
-		Number string `json:"number"`
-		Type   string `json:"type"`
-	} `json:"identification"`
-	LastName string `json:"last_name"`
-	Phone    struct {
-		AreaCode  string `json:"area_code"`
-		Extension string `json:"extension"`
-		Number    string `json:"number"`
-	} `json:"phone"`
-	Type string `json:"type"`
+	Email          string      `json:"email,omitempty"`
 }
 
 type MPResponsePayments struct {
@@ -81,8 +68,8 @@ type MPResponsePayments struct {
 		ExternalResourceURL      interface{} `json:"external_resource_url"`
 		FinancialInstitution     interface{} `json:"financial_institution"`
 		InstallmentAmount        float64     `json:"installment_amount"`
-		NetReceivedAmount        int         `json:"net_received_amount"`
-		OverpaidAmount           int         `json:"overpaid_amount"`
+		NetReceivedAmount        float64     `json:"net_received_amount"`
+		OverpaidAmount           float64     `json:"overpaid_amount"`
 		PaymentMethodReferenceID interface{} `json:"payment_method_reference_id"`
 		TotalPaidAmount          float64     `json:"total_paid_amount"`
 	} `json:"transaction_details"`
