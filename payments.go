@@ -10,7 +10,7 @@ type MPRequestPayments struct {
 }
 
 type Payer struct {
-	Email          string      `json:"email,omitempty"`
+	Email string `json:"email,omitempty"`
 }
 
 type MPResponsePayments struct {
