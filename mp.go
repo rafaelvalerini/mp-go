@@ -8,13 +8,13 @@ import (
 )
 
 const (
-	MERCADOPAGO_PAYMENT             = "https://api.mercadopago.com/v1/payments?"
-	MERCADOPAGO_ACCESS_TOKEN_PARAM  = "access_token="
-	MERCADOPAGO_HEADER_CONTENT      = "Content-Type"
-	MERCADOPAGO_CONTENT_JSON        = "application/json"
-	MERCADOPAGO_ACCEPT              = "accept"
-	MERCADOPAGO_PAYMENTS_METHOD     = "POST"
-	MERCADOPAGO_PAYMENTS_METHOD_GET = "GET"
+	mercadopagoPayment           = "https://api.mercadopago.com/v1/payments?"
+	mercadopagoAccessTokenParam  = "access_token="
+	mercadopagoHeaderContent     = "Content-Type"
+	mercadopagoContentJson       = "application/json"
+	mercadopagoAccept            = "accept"
+	mercadopagoPaymentsMethod    = "POST"
+	mercadopagoPaymentsMethodGet = "GET"
 )
 
 func Pay(mp MPRequestPayments, accessToken string) (MPResponsePayments, error) {
@@ -27,7 +27,7 @@ func Pay(mp MPRequestPayments, accessToken string) (MPResponsePayments, error) {
 
 	json.NewEncoder(b).Encode(mp)
 
-	req, err := http.NewRequest(MERCADOPAGO_PAYMENTS_METHOD, MERCADOPAGO_PAYMENT+MERCADOPAGO_ACCESS_TOKEN_PARAM+accessToken, b)
+	req, err := http.NewRequest(mercadopagoPaymentsMethod, mercadopagoPayment+mercadopagoAccessTokenParam+accessToken, b)
 
 	if err != nil {
 
@@ -35,9 +35,9 @@ func Pay(mp MPRequestPayments, accessToken string) (MPResponsePayments, error) {
 
 	}
 
-	req.Header.Add(MERCADOPAGO_HEADER_CONTENT, MERCADOPAGO_CONTENT_JSON)
+	req.Header.Add(mercadopagoHeaderContent, mercadopagoContentJson)
 
-	req.Header.Add(MERCADOPAGO_ACCEPT, MERCADOPAGO_CONTENT_JSON)
+	req.Header.Add(mercadopagoAccept, mercadopagoContentJson)
 
 	resp, err := client.Do(req)
 
@@ -73,7 +73,7 @@ func GetPay(idPay string, accessToken string) (MPResponsePayments, error) {
 
 	client := &http.Client{}
 
-	req, err := http.NewRequest(MERCADOPAGO_PAYMENTS_METHOD_GET, MERCADOPAGO_PAYMENT + "/" + idPay + MERCADOPAGO_ACCESS_TOKEN_PARAM + accessToken, nil)
+	req, err := http.NewRequest(mercadopagoPaymentsMethodGet, mercadopagoPayment+"/"+idPay+mercadopagoAccessTokenParam+accessToken, nil)
 
 	if err != nil {
 
@@ -81,9 +81,9 @@ func GetPay(idPay string, accessToken string) (MPResponsePayments, error) {
 
 	}
 
-	req.Header.Add(MERCADOPAGO_HEADER_CONTENT, MERCADOPAGO_CONTENT_JSON)
+	req.Header.Add(mercadopagoHeaderContent, mercadopagoContentJson)
 
-	req.Header.Add(MERCADOPAGO_ACCEPT, MERCADOPAGO_CONTENT_JSON)
+	req.Header.Add(mercadopagoAccept, mercadopagoContentJson)
 
 	resp, err := client.Do(req)
 
